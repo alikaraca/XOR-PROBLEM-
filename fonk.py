@@ -2,7 +2,6 @@ import platform
 import tkinter
 from tkinter import messagebox
 import subprocess
-import os
 def terminal():
     os.system("gnome-terminal -e 'bash -c \"cd; exec bash\"' ")
 def sysbilgi():
