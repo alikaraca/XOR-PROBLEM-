@@ -2,11 +2,14 @@ import tkinter
 import sys
 import fonk
 from tkinter import *
+import shutil
+import Butonlar
+from tkinter import filedialog
 class ProgMenu(tkinter.Menu):
     def __init__(self, parent):
         tkinter.Menu.__init__(self, parent)
         filemenu = tkinter.Menu(self, tearoff=False)
-        filemenu.add_command(label="Dosyaları sıkıştır")
+        filemenu.add_command(label="Dosyaları sıkıştır",command=self.sıkıştır)
         filemenu.add_command(label="Dosyaları çıkart")
         filemenu.add_command(label="Özellikler")
         filemenu.add_command(label="Yorum Düzenle")
@@ -23,5 +26,8 @@ class ProgMenu(tkinter.Menu):
         amenu.add_command(label="Çalışma")
         amenu.add_command(label="Yardım",command=fonk.yrdm)
         self.add_cascade(label="Bilgi",menu=amenu)
-    def quit(self):
-        sys.exit(0)
+    def sıkıştır(self):
+        dosyayolu=filedialog.askopenfilename()
+        shutil.make_archive('/home/alikaraca','tar',dosyayolu)
+
+
