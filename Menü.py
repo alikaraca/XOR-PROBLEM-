@@ -1,0 +1,27 @@
+import tkinter
+import sys
+import fonk
+from tkinter import *
+class ProgMenu(tkinter.Menu):
+    def __init__(self, parent):
+        tkinter.Menu.__init__(self, parent)
+        filemenu = tkinter.Menu(self, tearoff=False)
+        filemenu.add_command(label="Dosyaları sıkıştır")
+        filemenu.add_command(label="Dosyaları çıkart")
+        filemenu.add_command(label="Özellikler")
+        filemenu.add_command(label="Yorum Düzenle")
+        filemenu.add_command(label="Yazdır")
+        filemenu.add_command(label="Çıkış",command=parent.destroy)
+        self.add_cascade(label="Dosya",menu=filemenu)
+        cmenu=tkinter.Menu(self)
+        cmenu.add_command(label="Bul")
+        cmenu.add_command(label="Terminale Git",command=fonk.terminal)
+        cmenu.add_command(label="Sistem",command=fonk.sysbilgi)
+        cmenu.add_command(label="Program",command=fonk.progbilgi)
+        self.add_cascade(label="Komutlar",menu=cmenu)
+        amenu=tkinter.Menu(self)
+        amenu.add_command(label="Çalışma")
+        amenu.add_command(label="Yardım",command=fonk.yrdm)
+        self.add_cascade(label="Bilgi",menu=amenu)
+    def quit(self):
+        sys.exit(0)
