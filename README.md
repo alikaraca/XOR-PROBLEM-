@@ -1,2 +1,2 @@
 # linux-commander
-windows commander'ı linux'a uyarlama
+Total Commander'ı linux'a uyarlama
