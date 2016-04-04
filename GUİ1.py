@@ -2,6 +2,7 @@ import tkinter
 from tkinter import *
 import os
 from Menü import ProgMenu
+
 class arayüz(tkinter.Tk):
     def __init__(self):
         super().__init__()
@@ -9,6 +10,22 @@ class arayüz(tkinter.Tk):
         self.config(menu=menuBar)
         self.listBir = tkinter.Listbox(width=50, height=10)
         self.listİki = tkinter.Listbox(width=50, height=10)
+        butonBir=tkinter.Button(text="F3 İncele")
+        butonBir.place(relx=0.0,rely=0.8)
+        butonİki=tkinter.Button(text="F4 Düzenle")
+        butonİki.place(relx=0.13,rely=0.8)
+        butonÜç=tkinter.Button(text="F5 Kopyala")
+        butonÜç.place(relx=0.28,rely=0.8)
+        butonDört=tkinter.Button(text="F6 Taşı",width=7)
+        butonDört.place(relx=0.43,rely=0.8)
+        butonBeş=tkinter.Button(text="F7 Yeni Klasör",width=12)
+        butonBeş.place(relx=0.55,rely=0.8)
+        butonAltı=tkinter.Button(text="F8 Sil",width=6)
+        butonAltı.place(relx=0.74,rely=0.8)
+        butonYedi=tkinter.Button(text="Alt+F4",command=self.destroy)
+        butonYedi.place(relx=0.85,rely=0.8)
+        label1=tkinter.Label(text="Copyright 2016 LinuxCommander™")
+        label1.pack(side=BOTTOM)
         self.dizinList("/home/alikaraca/Masaüstü")
     def onSelect(self, evt):
         self.w = evt.widget
