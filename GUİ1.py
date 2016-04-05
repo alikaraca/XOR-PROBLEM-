@@ -1,55 +1,54 @@
 import tkinter
 from tkinter import *
 import os
+from tkinter import ttk, filedialog
 from Menü import ProgMenu
-
-class arayüz(tkinter.Tk):
+class Arayüz(tkinter.Tk):
     def __init__(self):
         super().__init__()
         menuBar=ProgMenu(self)
         self.config(menu=menuBar)
         self.listBir = tkinter.Listbox(width=50, height=10)
         self.listİki = tkinter.Listbox(width=50, height=10)
-        butonBir=tkinter.Button(text="F3 İncele")
-        butonBir.place(relx=0.0,rely=0.8)
-        butonİki=tkinter.Button(text="F4 Düzenle")
-        butonİki.place(relx=0.13,rely=0.8)
-        butonÜç=tkinter.Button(text="F5 Kopyala")
-        butonÜç.place(relx=0.28,rely=0.8)
-        butonDört=tkinter.Button(text="F6 Taşı",width=7)
-        butonDört.place(relx=0.43,rely=0.8)
-        butonBeş=tkinter.Button(text="F7 Yeni Klasör",width=12)
-        butonBeş.place(relx=0.55,rely=0.8)
-        butonAltı=tkinter.Button(text="F8 Sil",width=6)
-        butonAltı.place(relx=0.74,rely=0.8)
-        butonYedi=tkinter.Button(text="Alt+F4",command=self.destroy)
-        butonYedi.place(relx=0.85,rely=0.8)
-        label1=tkinter.Label(text="Copyright 2016 LinuxCommander™")
-        label1.pack(side=BOTTOM)
-        self.dizinList("/home/alikaraca/Masaüstü")
+        self.butonBir=Button(text=" F3 İncele        ",width=12,height=1)
+        self.butonBir.place(relx=0.25,rely=0.7)
+        self.butonİki = Button(text=" F4 Düzenle     ",width=12,height=1)
+        self.butonİki.place(relx=0.25,rely=0.75)
+        self.butonUc = Button(text=" F5 Kopyala      ",width=12,height=1)
+        self.butonUc.place(relx=0.25,rely=0.80)
+        self.butonDort = Button(text="F6 Taşı       ",width=12,height=1)
+        self.butonDort.place(relx=0.25,rely=0.85)
+        self.butonBes = Button(text="F7 Yeni Klasör ",width=12,height=1)
+        self.butonBes.place(relx=0.55,rely=0.7)
+        self.butonAltı = Button(text="F8 Sil        ",width=12,height=1)
+        self.butonAltı.place(relx=0.55,rely=0.75)
+        self.butonYedi = Button(text="Alt-F4 Çıkış  ",width=12,height=1,command=self.destroy)
+        self.butonYedi.place(relx=0.55,rely=0.80)
+        self.lbl = Label(text="Copyright © 2016 LinuxCommander™, All Rights Reserved.")
+        self.lbl.pack(side=BOTTOM)
+        self.tree = ttk.Treeview(height=15)
+        self.filePath(self.fileDia())
     def onSelect(self, evt):
         self.w = evt.widget
         self.index = int(self.w.curselection()[0])
         self.value = self.w.get(self.index)
         print("%s" %(self.value))
         return self.value
-    def dizinList(self,yol):
-        self.yazıBir = tkinter.Label(text="Dosyalar : ")
-        self.yazıBir.pack()
+    def fileDia(self):
+        dia = filedialog.askdirectory(initialdir="/")
+        return dia
+    def treeW(self, giriş):
+        self.tree.insert("", 25, text=giriş, values=("1A", "1b"))
+        self.tree.pack()
+    def filePath(self, yol):
         for i in os.listdir(yol):
             dosya = os.path.join(yol, i)
-            if os.path.isfile(dosya):
-                self.listBir.insert(1, dosya)
-                self.listBir.pack()
-        self.yazıİki = tkinter.Label(text="Klasörler : ")
-        self.yazıİki.pack()
-        for i in os.listdir(yol):
-            dosya2 = os.path.join(yol, i)
-            if os.path.isdir(dosya2):
-                self.listİki.insert(1, dosya2)
-                self.listİki.pack()
-        self.listİki.bind("<<ListboxSelect>>", self.onSelect)
-        self.listBir.bind("<<ListboxSelect>>", self.onSelect)
-pencere=arayüz()
+            self.treeW(i)
+            print(i)
+
+
+pencere=Arayüz()
+pencere.title("Linux Commander")
 pencere.geometry("600x600")
+pencere.configure(background="yellow")
 pencere.mainloop()
