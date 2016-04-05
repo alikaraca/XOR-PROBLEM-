@@ -1,16 +1,18 @@
 import tkinter
+import tarfile
 import sys
 import fonk
 from tkinter import *
 import shutil
-import Butonlar
+import zipfile
+import os
 from tkinter import filedialog
 class ProgMenu(tkinter.Menu):
     def __init__(self, parent):
         tkinter.Menu.__init__(self, parent)
         filemenu = tkinter.Menu(self, tearoff=False)
         filemenu.add_command(label="Dosyaları sıkıştır",command=self.sıkıştır)
-        filemenu.add_command(label="Dosyaları çıkart")
+        filemenu.add_command(label="Dosyaları çıkart",command=self.çıkart)
         filemenu.add_command(label="Özellikler")
         filemenu.add_command(label="Yorum Düzenle")
         filemenu.add_command(label="Yazdır")
@@ -28,6 +30,13 @@ class ProgMenu(tkinter.Menu):
         self.add_cascade(label="Bilgi",menu=amenu)
     def sıkıştır(self):
         dosyayolu=filedialog.askopenfilename()
-        shutil.make_archive('/home/alikaraca','tar',dosyayolu)
-
-
+        shutil.make_archive('/home/alikaraca/Masaüstü','tar',dosyayolu)
+        return self.sıkıştır()
+    def çıkart(self):
+        tar=filedialog.askopenfilename()
+        tar = tarfile.open("pycharm.tar")
+        dosya = tar.extractfile(tar)
+        dosya.read()
+        d = open(tar, "w")
+        d.write(dosya.read())
+        d.close()
