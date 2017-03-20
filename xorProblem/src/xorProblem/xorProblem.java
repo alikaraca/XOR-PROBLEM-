@@ -39,7 +39,7 @@ public class xorProblem {
         hidden3.setDummy(true);
         input3.setOutput(BIAS);
  
-        JFrame frame=new JFrame("Dolar Tahmin");
+        JFrame frame=new JFrame("XOR Problem");
         frame.getContentPane().setLayout(new FlowLayout());
         frame.setBounds(400,400, 500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
